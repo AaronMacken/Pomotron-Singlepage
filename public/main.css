@@ -32,7 +32,7 @@ body {
   height: 15rem;
   position: relative;
   background-image: linear-gradient(to right bottom, #00796b 80%, #004d40);
-  box-shadow: 0 18px 40px -12px #00796b;
+  box-shadow: 0 18px 20px -12px #00796b;
   border: 2px solid #004d40; }
 
 .header__titleBox {
@@ -78,8 +78,20 @@ body {
   font-family: "Orbitron", serif;
   font-size: 2.5rem;
   letter-spacing: 1rem;
-  color: #004d40;
-  text-shadow: 0px 4px 3px rgba(0, 77, 64, 0.4), 0px 8px 13px rgba(0, 77, 64, 0.1), 0px 18px 23px rgba(0, 77, 64, 0.1); }
+  color: #004d40; }
+  .timer h1 {
+    text-shadow: 0px 4px 3px rgba(0, 77, 64, 0.4), 0px 8px 13px rgba(0, 77, 64, 0.1), 0px 18px 23px rgba(0, 77, 64, 0.1); }
+
+.timer__container {
+  background-color: #f5f6f7;
+  width: 50%;
+  font-size: 2rem;
+  padding: 1rem;
+  margin: auto;
+  border: 1px solid #dddfe2;
+  border-radius: 2px;
+  margin-bottom: 2rem;
+  box-shadow: 0 18px 20px -12px #dddfe2; }
 
 /* The container */
 .container {
@@ -88,7 +100,10 @@ body {
   padding-left: 3.5rem;
   margin-bottom: 1.2rem;
   cursor: pointer;
-  font-size: 2.2rem;
+  font-size: 2rem;
+  font-family: "Roboto", serif;
+  color: #000;
+  letter-spacing: 0;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -137,6 +152,9 @@ body {
   border-radius: 50%;
   background: white; }
 
+.main {
+  color: #000000; }
+
 /* Style the tab */
 .tab {
   overflow: hidden;
@@ -170,10 +188,64 @@ body {
 /* Style the tab content */
 .tabcontent {
   display: none;
-  padding: .6rem 1.2rem;
-  border: 1px solid #dddfe2;
+  padding: 0.6rem 1.2rem;
+  border: 2px solid #dddfe2;
   border-top: none;
   width: 50%;
   height: 50rem;
   margin: auto;
-  background-color: #fff; }
+  overflow: scroll;
+  background-color: #f5f6f7; }
+
+.list {
+  list-style: none;
+  font-size: 2.5rem;
+  color: #dddfe2;
+  text-align: center; }
+  .list li {
+    text-align: center;
+    margin: 1rem 0;
+    margin-left: 1rem; }
+  .list li:hover {
+    color: #000;
+    opacity: .7;
+    cursor: pointer; }
+
+li span {
+  float: right;
+  transition: all 0.3s;
+  opacity: 0.5;
+  margin-right: 1rem; }
+
+.inProg {
+  color: #004d40; }
+  .inProg:hover {
+    opacity: 1; }
+
+.delete {
+  color: #c0392b; }
+  .delete:hover {
+    color: #e74c3c;
+    opacity: 1; }
+
+#taskInput {
+  width: 100%;
+  height: 6rem;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #34495e;
+  outline: none;
+  font: 300 2.8rem "Roboto", serif, sans-serif;
+  padding: 2rem;
+  color: #000; }
+
+::placeholder {
+  color: #000;
+  opacity: 0.5; }
+
+.inProgress {
+  color: #000; }
+
+.done {
+  text-decoration: line-through;
+  color: #bdc3c7; }

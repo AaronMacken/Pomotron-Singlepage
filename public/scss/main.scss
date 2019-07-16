@@ -12,7 +12,10 @@ $clock: "Orbitron", serif;
 $color-primary: #00796b;
 $color-primary-light: #26a69a;
 $color-primary-dark: #004d40;
+$color-secondary: #4dd0e1;
 $color-grey: #e9ebee;
+$color-grey-dark: #dddfe2;
+$color-off-white: #f5f6f7;
 $color-white: #fff;
 
 *,
@@ -51,7 +54,7 @@ body {
   height: 15rem;
   position: relative;
   background-image: linear-gradient(to right bottom, rgba($color-primary, 1) 80%, rgba($color-primary-dark, 1));
-  box-shadow: 0 18px 40px -12px $color-primary;
+  box-shadow: 0 18px 20px -12px $color-primary;
   border: 2px solid $color-primary-dark;
 }
 
@@ -106,12 +109,24 @@ body {
   font-size: 2.5rem;
   letter-spacing: 1rem;
   color: $color-primary-dark;
-  text-shadow: 0px 4px 3px rgba($color-primary-dark, 0.4), 0px 8px 13px rgba($color-primary-dark, 0.1),
-    0px 18px 23px rgba($color-primary-dark, 0.1);
-
-  .timer__clock {
+  h1 {
+    text-shadow: 0px 4px 3px rgba($color-primary-dark, 0.4), 0px 8px 13px rgba($color-primary-dark, 0.1),
+      0px 18px 23px rgba($color-primary-dark, 0.1);
   }
 }
+
+.timer__container {
+  background-color: $color-off-white;
+  width: 50%;
+  font-size: 2rem;
+  padding: 1rem;
+  margin: auto;
+  border: 1px solid #dddfe2;
+  border-radius: 2px;
+  margin-bottom: 2rem;
+  box-shadow: 0 18px 20px -12px $color-grey-dark;
+}
+
 /* The container */
 .container {
   display: inline-block;
@@ -119,7 +134,10 @@ body {
   padding-left: 3.5rem;
   margin-bottom: 1.2rem;
   cursor: pointer;
-  font-size: 2.2rem;
+  font-size: 2rem;
+  font-family: $roboto;
+  color: #000;
+  letter-spacing: 0;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -177,88 +195,119 @@ body {
 }
 
 // ------------------------------------------------- MAIN GRID --------------------------------------------------- //
-
+.main {
+  color: #000000;
+}
 /* Style the tab */
 .tab {
-    overflow: hidden;
-    border: 1px solid #dddfe2;
-    background-color: #f5f6f7;
-    border-radius: 2px;
-    width: 50%;
-    margin: auto;
+  overflow: hidden;
+  border: 1px solid #dddfe2;
+  background-color: $color-off-white;
+  border-radius: 2px;
+  width: 50%;
+  margin: auto;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 1.5rem;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: $color-grey-dark;
+  font-weight: 500;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: $color-grey-dark;
+  font-weight: 500;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 0.6rem 1.2rem;
+  border: 2px solid #dddfe2;
+  border-top: none;
+  width: 50%;
+  height: 50rem;
+  margin: auto;
+  overflow: scroll;
+  background-color: $color-off-white;
+}
+
+.list {
+  list-style: none;
+  font-size: 2.5rem;
+  color: $color-grey-dark;
+  text-align: center;
+
+  li {
+    text-align: center;
+    margin: 1rem 0;
+    margin-left: 1rem;
   }
-  
-  /* Style the buttons that are used to open the tab content */
-  .tab button {
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
+
+  li:hover{
+    color: #000;
+    opacity: .7;
     cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    font-size: 1.5rem;
-    
   }
-  
-  /* Change background color of buttons on hover */
-  .tab button:hover {
-    background-color: #dddfe2;
-    font-weight: 500;
-  }
-  
-  /* Create an active/current tablink class */
-  .tab button.active {
-    background-color: #dddfe2;
-    font-weight: 500;
-  }
-  
-  /* Style the tab content */
-  .tabcontent {
-    display: none;
-    padding: .6rem 1.2rem;
-    border: 1px solid #dddfe2;
-    border-top: none;
-    width: 50%;
-    height: 50rem;
-    margin: auto;
-    background-color: $color-white;
-  }
+}
 
-// .main {
-//   display: grid;
-//   grid-template-columns: 1fr;
-//   height: 50rem;
-//   grid-gap: 0.25%;
-//   margin-top: 3rem;
-//   width: 50%;
-//   margin: auto;
-// }
+li span {
+  float: right;
+  transition: all 0.3s;
+  opacity: 0.5;
+  margin-right: 1rem;
+}
 
-// .main__column {
-//   background-color: $color-white;
-//   border: 1px solid #dddfe2;
-//   border-radius: 5px;
-//   color: $color-primary;
-//   font-size: 3rem;
-//   text-align: center;
-//   overflow: scroll;
-//   h2 {
-//       font-weight: 300;
-//       display: inline-block;
-//       border-bottom: 2px solid $color-primary;
-//       font-size: 5rem;
-//   }
-//   ul {
-//       margin-top: 2rem;
-//       font-weight: 100;
-//   }
-//   li {
-//       transition: .2s;
-//     &:hover, &:active {
-//         color: $color-primary-dark;
-//         font-weight: 300;
-//     }
+.inProg {
+  color: $color-primary-dark;
+  &:hover {
+    opacity: 1;
+  }
+}
 
-//   }
-// }
+.delete {
+  color: #c0392b;
+  &:hover {
+    color: #e74c3c;
+    opacity: 1;
+  }
+}
+
+#taskInput {
+  width: 100%;
+  height: 6rem;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #34495e;
+  outline: none;
+  font: 300 2.8rem $roboto, sans-serif;
+  padding: 2rem;
+  color: #000;
+}
+
+::placeholder {
+  color: #000;
+  opacity: 0.5;
+}
+
+.inProgress {
+  color: #000;
+}
+
+.done {
+  text-decoration: line-through;
+  color: #bdc3c7;
+}
