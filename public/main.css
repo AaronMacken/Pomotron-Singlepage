@@ -1,0 +1,179 @@
+/* Default Styles */
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Orbitron:400,500,700,900&display=swap");
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  /* give everything inherit for box sizing, and set the body to border-box */
+  /* this makes it easier to change box-sizing properties for other things
+  if the situation ever arises */
+  box-sizing: inherit; }
+
+html {
+  font-size: 62.5%;
+  /* Setting the base font size to 62.5%
+    this is 62.5% of the browsers default font size - 16px
+    thus making our base font size 10px and making it easy to use rem for all children measurements
+    This is a good practice to do incase users change the default font size. Very flexible */ }
+
+body {
+  /* Set all fonts in the body */
+  font-family: "Roboto", serif, "Open Sans", sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  padding: 3rem;
+  color: #fff;
+  box-sizing: border-box;
+  background-color: #e9ebee; }
+
+.header {
+  height: 15rem;
+  position: relative;
+  background-image: linear-gradient(to right bottom, #00796b 80%, #004d40);
+  box-shadow: 0 18px 40px -12px #00796b;
+  border: 2px solid #004d40; }
+
+.header__titleBox {
+  position: absolute;
+  top: 45%;
+  left: 25%;
+  /* shifts half of the elements width and height, thus centering the element */
+  transform: translate(-50%, -50%); }
+
+.header__titleBox__title {
+  text-transform: uppercase;
+  display: block;
+  font-size: 3rem;
+  font-weight: 100;
+  font-style: italic;
+  letter-spacing: 0.5rem;
+  border-bottom: 2px solid #fff; }
+
+.header__titleBox__title--bold {
+  font-weight: 500;
+  font-style: italic; }
+
+.header__titleBox__title--sub {
+  margin-top: 1rem;
+  font-weight: 300;
+  font-size: 2rem; }
+
+.header__howToBox {
+  position: absolute;
+  top: 48%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  width: 60rem; }
+
+.header__howToBox--list {
+  font-weight: 100;
+  margin-left: 4rem; }
+
+.timer {
+  margin-top: 3rem;
+  text-align: center;
+  font-family: "Orbitron", serif;
+  font-size: 2.5rem;
+  letter-spacing: 1rem;
+  color: #004d40;
+  text-shadow: 0px 4px 3px rgba(0, 77, 64, 0.4), 0px 8px 13px rgba(0, 77, 64, 0.1), 0px 18px 23px rgba(0, 77, 64, 0.1); }
+
+/* The container */
+.container {
+  display: inline-block;
+  position: relative;
+  padding-left: 3.5rem;
+  margin-bottom: 1.2rem;
+  cursor: pointer;
+  font-size: 2.2rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer; }
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2.5rem;
+  width: 2.5rem;
+  background-color: #fff;
+  border-radius: 50%; }
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #00796b; }
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #004d40; }
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none; }
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block; }
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white; }
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #dddfe2;
+  background-color: #f5f6f7;
+  border-radius: 2px;
+  width: 50%;
+  margin: auto; }
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 1.5rem; }
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #dddfe2;
+  font-weight: 500; }
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #dddfe2;
+  font-weight: 500; }
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: .6rem 1.2rem;
+  border: 1px solid #dddfe2;
+  border-top: none;
+  width: 50%;
+  height: 50rem;
+  margin: auto;
+  background-color: #fff; }
