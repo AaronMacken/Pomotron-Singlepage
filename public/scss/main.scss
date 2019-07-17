@@ -249,18 +249,29 @@ body {
   list-style: none;
   font-size: 2.5rem;
   color: $color-grey-dark;
-  text-align: center;
+  margin-top: 3rem;
 
   li {
-    text-align: center;
     margin: 1rem 0;
-    margin-left: 1rem;
   }
 
-  li:hover{
+  li:hover {
     color: #000;
-    opacity: .7;
+    opacity: 0.7;
     cursor: pointer;
+  }
+}
+
+.nestedList {
+  list-style: none;
+
+  li {
+    display: inline-block;
+    font-size: 2rem;
+  }
+
+  p {
+    display: inline-block;
   }
 }
 
@@ -278,10 +289,17 @@ li span {
   }
 }
 
-.delete {
-  color: #c0392b;
+.reset {
+  color: #f39c12;
   &:hover {
-    color: #e74c3c;
+    opacity: 1;
+    color: #f1c40f;
+  }
+}
+
+.delete {
+  color: #e74c3c;
+  &:hover {
     opacity: 1;
   }
 }
@@ -305,6 +323,11 @@ li span {
 
 .inProgress {
   color: #000;
+}
+
+.nestedP {
+  font-size: 3rem;
+  color: $color-primary;
 }
 
 .done {

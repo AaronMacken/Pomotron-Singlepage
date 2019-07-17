@@ -201,15 +201,21 @@ body {
   list-style: none;
   font-size: 2.5rem;
   color: #dddfe2;
-  text-align: center; }
+  margin-top: 3rem; }
   .list li {
-    text-align: center;
-    margin: 1rem 0;
-    margin-left: 1rem; }
+    margin: 1rem 0; }
   .list li:hover {
     color: #000;
-    opacity: .7;
+    opacity: 0.7;
     cursor: pointer; }
+
+.nestedList {
+  list-style: none; }
+  .nestedList li {
+    display: inline-block;
+    font-size: 2rem; }
+  .nestedList p {
+    display: inline-block; }
 
 li span {
   float: right;
@@ -222,10 +228,15 @@ li span {
   .inProg:hover {
     opacity: 1; }
 
+.reset {
+  color: #f39c12; }
+  .reset:hover {
+    opacity: 1;
+    color: #f1c40f; }
+
 .delete {
-  color: #c0392b; }
+  color: #e74c3c; }
   .delete:hover {
-    color: #e74c3c;
     opacity: 1; }
 
 #taskInput {
@@ -245,6 +256,10 @@ li span {
 
 .inProgress {
   color: #000; }
+
+.nestedP {
+  font-size: 3rem;
+  color: #00796b; }
 
 .done {
   text-decoration: line-through;

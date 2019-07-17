@@ -32,17 +32,24 @@ function getTasks(tasks) {
     });
 }
 
+
+// '<span class=\'inProg\'>&#10004;</span>'
 // create html from the db items
 function loadTask(task) {
     // load json info into a list item
     let newTask = $("<li class='task'>" + task.name
-        + '<span class=\'delete\'>X</span>'
-        + '<span class=\'inProg\'>&#10004;</span>'
+        + '<span class=\'delete\'>&#10004;</span>'
+        + '<span class=\'reset\'><i class="fas fa-redo"></i></span>'
+        + '<span class=\'inProg\'><i class="fas fa-play"></i></span>'
+        + '<ul class="nestedList"><li>Expected iterations: ' + task.expectedIterations + '<p class="nestedP">&nbsp;/&nbsp;</p>' + '</li>' + '<li>Completed iterations: '
+        + task.completedIterations + '</li></ul>'
         + "</li>");
+    // let taskItems = $("<label>" + 'Expected iterations: ' + task.expectedIterations + "</label>"
+    // +  "<p>" + 'Completed iterations: ' + task.completedIterations + "</p>")
     // store other json data in jquery memory
     newTask.data('id', task._id);
     newTask.data('inProgress', task.inProgress);
-    if(task.inProgress) {
+    if (task.inProgress) {
         newTask.addClass('inProgress');
     }
     // add item to unordered list in html

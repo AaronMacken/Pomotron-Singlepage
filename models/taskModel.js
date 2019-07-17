@@ -11,11 +11,11 @@ var taskSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    expectedPoms: {
+    expectedIterations: {
         type: Number,
         default: 0
     },
-    actualPoms: {
+    completedIterations: {
         type: Number,
         default: 0
     },
