@@ -124,6 +124,7 @@ function startTimer(duration, display) {
     }
     if (--timer < 0) {
       clearInterval(x);
+      resetClock();
       // call ajax here to modify iterations completed
     }
   }, 1000);
