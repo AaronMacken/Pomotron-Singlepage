@@ -39,8 +39,8 @@ function loadTask(task) {
     // load json info into a list item
     
     let newTask = $("<li class='task'>" + task.name
-        + '<button class="btn btn--ajax" id=\'delete\'>X</button>'
-        + '<button class="btn btn--ajax" id=\'complete\'>&#10004;</button>'
+        + '<button class="btn btn--ajax" id=\'delete\'><i class="fas fa-times"></i></button>'
+        + '<button class="btn btn--ajax" id=\'complete\'><i class="fas fa-check"></i></button>'
         + '<ul class="nestedList"><li>Expected iterations: ' + task.expectedIterations + '<p class="nestedP">&nbsp;/&nbsp;</p>' + '</li>' + '<li>Completed iterations: '
         + task.completedIterations + '</li></ul>'
         + "</li>");
