@@ -1,32 +1,74 @@
-
-// ------------------------------------------ VARIABLES --------------------------------------- //
-
 // html element vars
-var radios = $("[name='radio']"),
-  radioHovers = $(".checkmark"),
-  display = $("#timer__clock"),
-  start = $("#start"),
-  pause = $("#pause"),
-  reset = $("#reset");
+var radios = document.getElementsByName("radio"),
+  radioContainers = document.getElementsByClassName("container"),
+  display = document.querySelector("#timer__clock"),
+  start = document.querySelector(".start"),
+  pause = document.querySelector(".pause"),
+  reset = document.querySelector(".reset");
 
-// vars that stores the set interval position
+// clock variables
 var time = 0,
   pausedTime;
 
-// switches to control UX properties of the clock
+// boolean UX variables
 var isPaused = false,
   isChecked = false,
   isCounting = false;
 
-window.onload = function () {
+
+
+function disableButton(el) {
+  el.disabled = true;
+  el.classList.add('disableControl');
+}
+
+function enableButton(el) {
+  el.disabled = false;
+  el.classList.remove('disableControl');
+}
+
+
+
+window.onload = function() {
   checkedSwitch();
   pause.disabled = true;
 };
 
-// ------------------------------------------ HTML ON CLICK FUNCTIONS --------------------------------------- //
+
+
+// on change function's for radio buttons
+// if a button is selected, set a variable to hold that button's value
+// set the clock to match that value, run checkedSwitch fn to control UX
+// and return the variable so that the countdown value can be used by other fn's
+function getInterval() {
+  var val = 0;
+  for (let z = 0; z < radios.length; z++) {
+    if (radios[z].checked == true) {
+      isChecked = true;
+      checkedSwitch();
+      val = radios[z].value;
+      display.textContent = val + ":00";
+      return parseInt(val);
+    }
+  }
+}
+
+// calls disable or enable button functions based on which control booleans are active
+// this will modify the css & enabled/disabled properties of the buttons
+function checkedSwitch() {
+  if (isChecked == false) {
+    disableButton(start);
+    disableButton(pause);
+    disableButton(reset);
+  } else {
+    enableButton(start);
+  }
+}
 
 // start button's on click function
-// converts minutes into seconds & calls startTimer function
+// if / else statement to determine whether the clock was previously running
+// calls the counting function to control UX
+// calls start timer function to update the time of the clock
 function startClock() {
   if (isPaused) {
     isPaused = false;
@@ -43,95 +85,34 @@ function startClock() {
   }
 }
 
-
-// reset to default values
-function resetClock() {
-  display.textContent = "00:00";
-  isPaused = false;
-  isCounting = false;
-  counting();
-  for (let z = 0; z < radios.length; z++) {
-    radios[z].checked = false;
-  }
-  isChecked = false;
-  checkedSwitch();
-}
-
-// function flips the bool switch & modifies the way startClock behaves
-function pauseClock() {
-  isPaused = true;
-  if (isPaused == true) {
-    pause.disabled = true;
-    start.disabled = false;
-    reset.disabled = false;
-  }
-}
-
-// ------------------------------------------ UX FUNCTIONS --------------------------------------- //
-// these functions are called in conjunction with the HTML on click functions in order to
-// enable / disable certain elements based on what the clock is doing. This prevents the user
-// from breaking the clock or getting any weird outcomes during use.
-
-// disable clock control buttons if no time interval has been chosen
-function checkedSwitch() {
-  if (isChecked == false) {
-    start.disabled = true;
-    pause.disabled = true;
-    reset.disabled = true;
-  } else {
-    start.disabled = false;
-  }
-}
-
 // disable time interval buttons while the clock is running
 function counting() {
   if (isCounting == true) {
     // disable radio buttons
     for (let z = 0; z < radios.length; z++) {
-      radios[z].disabled = true;
+      disableButton(radios[z]);
+      disableButton(radioContainers[z]);
     }
-    // disable start and enable pause
-    start.disabled = true;
-    pause.disabled = false;
-    reset.disabled = true;
+    disableButton(start);
+    enableButton(pause);
+    disableButton(reset);
   } else {
     for (let z = 0; z < radios.length; z++) {
-      radios[z].disabled = false;
+      enableButton(radios[z]);
+      enableButton(radioContainers[z]);
     }
     pause.disabled = true;
   }
 }
 
-
-
-// ------------------------------------------ CLOCK LOGIC --------------------------------------- //
-
-// on click function's for radio buttons
-// if the radio button was changed,
-// if it is selected, set a variable to hold that button's value
-// set the clock to match that value and return that value
-function getInterval() {
-  var val = 0;
-  for (let z = 0; z < radios.length; z++) {
-    if (radios[z].checked == true) {
-      isChecked = true;
-      checkedSwitch();
-      val = radios[z].value;
-      display.text(val + ':00');
-    }
-  }
-}
-
-// start timer function, takes time to count down from & element to change
-// set interval will occur every 1000ms or 1 second.
-// the passed in time value from getInterval will go down each tic
-// the function formats the time in a readable way and updates the html element each tic
-
+// takes a time to count down from and an html element to modify
+// the value from the radio button will be what is passed in and the 
+// h1 will be what reflects that time
 function startTimer(duration, display) {
   var timer = duration,
     minutes,
     seconds;
-  var x = setInterval(function () {
+  var x = setInterval(function() {
     minutes = parseInt(timer / 60, 10);
     seconds = parseInt(timer % 60, 10);
     minutes = minutes < 10 ? "0" + minutes : minutes;
@@ -148,3 +129,25 @@ function startTimer(duration, display) {
   }, 1000);
 }
 
+// function flips the bool switch & modifies the way startClock behaves
+function pauseClock() {
+  isPaused = true;
+  if (isPaused == true) {
+    disableButton(pause);
+    enableButton(start);
+    enableButton(reset);
+  }
+}
+
+// reset to default values
+function resetClock() {
+  display.textContent = "00:00";
+  isPaused = false;
+  isCounting = false;
+  counting();
+  for (let z = 0; z < radios.length; z++) {
+    radios[z].checked = false;
+  }
+  isChecked = false;
+  checkedSwitch();
+}

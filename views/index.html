@@ -40,25 +40,25 @@
         <div class='timer__container'>
             <h1 id='timer__clock'>00:00</h1>
             <label class="container">Five
-                <input onchange="getInterval()" type="radio" name="radio" value=05>
+                <input onchange="getInterval()" type="radio" name="radio" value=05 >
                 <span class="checkmark"></span>
             </label>
             <label class="container">Fifteen
-                <input onchange="getInterval()" type="radio" name="radio" value=15>
+                <input onchange="getInterval()" type="radio" name="radio" value=15 >
                 <span class="checkmark"></span>
             </label>
             <label class="container">Thirty
-                <input onchange="getInterval()" type="radio" name="radio" value=30>
+                <input onchange="getInterval()" type="radio" name="radio" value=30 >
                 <span class="checkmark"></span>
             </label>
             <label class="container">Forty-Five
-                <input onchange="getInterval()" type="radio" name="radio" value=45>
+                <input onchange="getInterval()" type="radio" name="radio" value=45 >
                 <span class="checkmark"></span>
             </label>
-            <div>
-                <button onclick="startClock()" class="btn" id='start'><i class="fas fa-play"></i></button>
-                <button onclick="resetClock()" class="btn" id='reset'><i class="fas fa-redo"></i></button>
-                <button onclick="pauseClock()" class="btn" id='pause'><i class="fas fa-stop"></i></button>
+            <div class='clockControlButtons'>
+                <button onclick="startClock()" class="btn start"><i class="fas fa-play"></i></button>
+                <button onclick="resetClock()" class="btn reset"><i class="fas fa-redo"></i></button>
+                <button onclick="pauseClock()" class="btn pause"><i class="fas fa-stop"></i></button>
             </div>
 
 

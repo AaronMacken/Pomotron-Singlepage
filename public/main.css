@@ -1,4 +1,3 @@
-/* Default Styles */
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Orbitron:400,500,700,900&display=swap");
 *,
@@ -133,6 +132,9 @@ body {
 .container input:checked ~ .checkmark {
   background-color: #004d40; }
 
+.container input:disabled ~ .checkmark {
+  background-color: #fff; }
+
 /* Create the indicator (the dot/circle - hidden when not checked) */
 .checkmark:after {
   content: "";
@@ -151,6 +153,15 @@ body {
   height: 8px;
   border-radius: 50%;
   background: white; }
+
+.start {
+  color: #004d40; }
+
+.pause {
+  color: #e74c3c; }
+
+.reset {
+  color: #f39c12; }
 
 .main {
   color: #000000; }
@@ -197,6 +208,21 @@ body {
   overflow: scroll;
   background-color: #f5f6f7; }
 
+#taskInput {
+  width: 100%;
+  height: 6rem;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #34495e;
+  outline: none;
+  font: 300 2.8rem "Roboto", serif, sans-serif;
+  padding: 2rem;
+  color: #000; }
+
+::placeholder {
+  color: #000;
+  opacity: 0.5; }
+
 .list {
   list-style: none;
   font-size: 2.5rem;
@@ -219,57 +245,24 @@ body {
 
 .btn {
   transition: all 0.3s;
-  opacity: 0.5;
   margin-right: 1rem;
   border: none;
   font-size: 2.2rem;
   outline: none;
-  background: transparent; }
+  background: transparent;
+  cursor: pointer; }
 
 .btn--ajax {
   float: right;
   font-size: 2.5rem; }
 
-#start {
-  color: #004d40; }
-  #start:hover {
-    opacity: 1; }
-
-#pause {
-  color: #e74c3c; }
-  #pause:hover {
-    opacity: 1; }
-
-#reset {
-  color: #f39c12; }
-  #reset:hover {
-    opacity: 1;
-    color: #f1c40f; }
-
 #complete {
-  color: #00796b; }
-  #complete:hover {
-    opacity: 1; }
+  color: #00796b;
+  opacity: 1; }
 
 #delete {
-  color: #e74c3c; }
-  #delete:hover {
-    opacity: 1; }
-
-#taskInput {
-  width: 100%;
-  height: 6rem;
-  background: none;
-  border: none;
-  border-bottom: 1px solid #34495e;
-  outline: none;
-  font: 300 2.8rem "Roboto", serif, sans-serif;
-  padding: 2rem;
-  color: #000; }
-
-::placeholder {
-  color: #000;
-  opacity: 0.5; }
+  color: #e74c3c;
+  opacity: 1; }
 
 .inProgress {
   color: #000; }
@@ -281,3 +274,11 @@ body {
 .done {
   text-decoration: line-through;
   color: #bdc3c7; }
+
+.disableControl {
+  cursor: default;
+  opacity: 0.4; }
+
+.disableRadio {
+  cursor: default;
+  opacity: 0.4; }
