@@ -52,7 +52,11 @@ body {
 .header {
   height: 15rem;
   position: relative;
-  background-image: linear-gradient(to right bottom, rgba($color-primary, 1) 80%, rgba($color-primary-dark, 1));
+  background-image: linear-gradient(
+    to right bottom,
+    rgba($color-primary, 1) 80%,
+    rgba($color-primary-dark, 1)
+  );
   box-shadow: 0 18px 20px -12px $color-primary;
   border: 2px solid $color-primary-dark;
 }
@@ -109,7 +113,8 @@ body {
   letter-spacing: 1rem;
   color: $color-primary-dark;
   h1 {
-    text-shadow: 0px 4px 3px rgba($color-primary-dark, 0.4), 0px 8px 13px rgba($color-primary-dark, 0.1),
+    text-shadow: 0px 4px 3px rgba($color-primary-dark, 0.4),
+      0px 8px 13px rgba($color-primary-dark, 0.1),
       0px 18px 23px rgba($color-primary-dark, 0.1);
   }
 }
@@ -125,7 +130,6 @@ body {
   margin-bottom: 2rem;
   box-shadow: 0 18px 20px -12px $color-grey-dark;
 }
-
 
 // ------------------------------------------------- CUSTOM RADIO BUTTONS --------------------------------------------------- //
 
@@ -201,7 +205,7 @@ body {
 
 // ------------------------------------------------- CLOCK CONTROL BUTTONS --------------------------------------------------- //
 
-.start{
+.start {
   color: $color-primary-dark;
 }
 
@@ -212,8 +216,6 @@ body {
 .reset {
   color: #f39c12;
 }
-
-
 
 // ------------------------------------------------- MAIN COLUMN --------------------------------------------------- //
 .main {
@@ -290,15 +292,14 @@ body {
 .list {
   list-style: none;
   font-size: 2.5rem;
-  color: $color-grey-dark;
+  color: #000;
   margin-top: 3rem;
+}
+.task {
+  margin-bottom: 2rem;
+  opacity: 0.5;
 
-  li {
-    margin-bottom: 2rem;
-  }
-
-  li:hover {
-    color: #000;
+  &:hover {
     opacity: 0.7;
     cursor: pointer;
   }
@@ -319,7 +320,7 @@ body {
   }
 }
 
-.btn{
+.btn {
   transition: all 0.3s;
   margin-right: 1rem;
   border: none;
@@ -334,20 +335,17 @@ body {
   font-size: 2.5rem;
 }
 
-
-#complete {
+.complete {
   color: $color-primary;
-  opacity: 1;
 }
-#delete {
+.delete {
   color: $color-red;
-  opacity: 1;
 }
 
 // ------------------------------------------------- CUSTOM STATE STYLES --------------------------------------------------- //
 
 .inProgress {
-  color: #000;
+  opacity: 1 !important;
 }
 
 .nestedP {
@@ -361,12 +359,6 @@ body {
 }
 
 .disableControl {
-  cursor: default;
-  opacity: 0.4;
-}
-
-// disable the input = no on click function
-.disableRadio {
   cursor: default;
   opacity: 0.4;
 }

@@ -226,12 +226,13 @@ body {
 .list {
   list-style: none;
   font-size: 2.5rem;
-  color: #dddfe2;
+  color: #000;
   margin-top: 3rem; }
-  .list li {
-    margin-bottom: 2rem; }
-  .list li:hover {
-    color: #000;
+
+.task {
+  margin-bottom: 2rem;
+  opacity: 0.5; }
+  .task:hover {
     opacity: 0.7;
     cursor: pointer; }
 
@@ -256,16 +257,14 @@ body {
   float: right;
   font-size: 2.5rem; }
 
-#complete {
-  color: #00796b;
-  opacity: 1; }
+.complete {
+  color: #00796b; }
 
-#delete {
-  color: #e74c3c;
-  opacity: 1; }
+.delete {
+  color: #e74c3c; }
 
 .inProgress {
-  color: #000; }
+  opacity: 1 !important; }
 
 .nestedP {
   font-size: 3rem;
@@ -276,9 +275,5 @@ body {
   color: #bdc3c7; }
 
 .disableControl {
-  cursor: default;
-  opacity: 0.4; }
-
-.disableRadio {
   cursor: default;
   opacity: 0.4; }
