@@ -37,10 +37,10 @@ function getTasks(tasks) {
 // create html from the db items
 function loadTask(task) {
     // load json info into a list item
+    
     let newTask = $("<li class='task'>" + task.name
-        + '<span class=\'delete\'>&#10004;</span>'
-        + '<span class=\'reset\'><i class="fas fa-redo"></i></span>'
-        + '<span class=\'inProg\'><i class="fas fa-play"></i></span>'
+        + '<button class="btn btn--ajax" id=\'delete\'>X</button>'
+        + '<button class="btn btn--ajax" id=\'complete\'>&#10004;</button>'
         + '<ul class="nestedList"><li>Expected iterations: ' + task.expectedIterations + '<p class="nestedP">&nbsp;/&nbsp;</p>' + '</li>' + '<li>Completed iterations: '
         + task.completedIterations + '</li></ul>'
         + "</li>");
