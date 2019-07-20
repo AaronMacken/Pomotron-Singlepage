@@ -10,6 +10,10 @@ var taskSchema = new mongoose.Schema({
     inProgress: {
         type: Boolean,
         default: false
+    }, 
+     isCompleted: {
+        type: Boolean,
+        default: false
     },
     expectedIterations: {
         type: Number,

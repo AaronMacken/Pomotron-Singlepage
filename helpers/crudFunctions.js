@@ -22,7 +22,7 @@ exports.createTask = (req, res) => {
     });
 };
 
-// update route
+// update/put route
 exports.updateTask = (req, res) => {
   db.Task.findOneAndUpdate({ _id: req.params.taskId }, req.body, { new: true })
     .then(updatedTask => {
