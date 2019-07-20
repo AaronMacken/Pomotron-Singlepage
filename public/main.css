@@ -236,6 +236,9 @@ body {
     opacity: 0.7;
     cursor: pointer; }
 
+.list2 .complete {
+  display: none; }
+
 .nestedList {
   list-style: none; }
   .nestedList li {
