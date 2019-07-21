@@ -5,7 +5,7 @@ $(document).ready(function() {
   $.getJSON("/api/tasks").then(getTasks);
 
   // create new object when enter is pressed on form
-  $("#taskInput").keypress(function(event) {
+  $(".taskInput").keypress(function(event) {
     if (event.which == 13) {
       createTask();
     }
@@ -76,7 +76,7 @@ function loadTask(task) {
       "</li></ul>" +
       "</li>"
   );
-
+    $('.expectedInput').attr('placeholder', task.expectedIterations);
   // jquery memory variables
   newTask.data("id", task._id);
   newTask.data("inProgress", task.inProgress);
@@ -96,10 +96,23 @@ function loadTask(task) {
 
 // create a new db object
 function createTask() {
-  let userInput = $("#taskInput").val();
-  $.post("/api/tasks", { name: userInput }).then(function(newTask) {
-    $("#taskInput").val("");
-    loadTask(newTask);
+  let taskName = $("#taskName").val();
+  let taskGuess = $("#taskGuess").val();
+
+  if($("#taskGuess").val() == "") {
+    taskGuess = 1;
+  }
+
+  let data = {
+    name: taskName,
+    expectedIterations: taskGuess
+  }
+
+  $.post("/api/tasks", data)
+  .then(function(newTask) {
+      $("#taskName").val("");
+      $("#taskGuess").val("");
+      loadTask(newTask);
   });
 }
 
@@ -143,7 +156,6 @@ function moveTask(task) {
           "</li>" +
           "<li>Completed iterations: " +
           updatedTask.completedIterations +
-          +taskId +
           "</li></ul>" +
           "</li>"
       );

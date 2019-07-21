@@ -208,20 +208,30 @@ body {
   overflow: scroll;
   background-color: #f5f6f7; }
 
-#taskInput {
+.taskInput {
   width: 100%;
   height: 6rem;
   background: none;
   border: none;
   border-bottom: 1px solid #34495e;
   outline: none;
-  font: 300 2.8rem "Roboto", serif, sans-serif;
+  font: 300 1.9rem "Roboto", serif, sans-serif;
   padding: 2rem;
-  color: #000; }
+  color: #000;
+  width: 50%;
+  display: inline-block;
+  float: left;
+  margin-bottom: 1rem; }
 
 ::placeholder {
   color: #000;
   opacity: 0.5; }
+
+.hint {
+  text-align: center;
+  font-size: 1.9rem; }
+  .hint span {
+    font-style: italic; }
 
 .list, .list2 {
   list-style: none;

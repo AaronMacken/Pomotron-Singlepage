@@ -270,21 +270,35 @@ body {
 
 // ------------------------------------------------- TASK INPUT --------------------------------------------------- //
 
-#taskInput {
+.taskInput {
   width: 100%;
   height: 6rem;
   background: none;
   border: none;
   border-bottom: 1px solid #34495e;
   outline: none;
-  font: 300 2.8rem $roboto, sans-serif;
+  font: 300 1.9rem $roboto, sans-serif;
   padding: 2rem;
   color: #000;
+  width: 50%;
+  display: inline-block;
+  float: left;
+  margin-bottom: 1rem;
 }
 
 ::placeholder {
   color: #000;
   opacity: 0.5;
+}
+
+.hint {
+  text-align: center;
+  font-size: 1.9rem;
+  
+  span {
+    font-style: italic;
+  }
+
 }
 
 // ------------------------------------------------- AJAX LI'S --------------------------------------------------- //
@@ -311,8 +325,6 @@ body {
   }
 }
 
-// ------------------------------------------------- EXP ITERATIONS / COMP ITERATIONS --------------------------------------------------- //
-
 .nestedList {
   list-style: none;
 
@@ -325,6 +337,11 @@ body {
     display: inline-block;
   }
 }
+
+
+// ------------------------------------------------ LI Components --------------------------------------------------- //
+
+
 
 .btn {
   transition: all 0.3s;
@@ -347,6 +364,7 @@ body {
 .delete {
   color: $color-red;
 }
+
 
 // ------------------------------------------------- CUSTOM STATE STYLES --------------------------------------------------- //
 
