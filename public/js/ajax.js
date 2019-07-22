@@ -4,6 +4,11 @@ $(document).ready(function() {
   // Load all objects
   $.getJSON("/api/tasks").then(getTasks);
 
+  // -------------------------------------------- Current Column On Clicks ------------------------------- //
+
+  $(".test").on("click", incrementIterations);
+
+
   // create new object when enter is pressed on form
   $(".taskInput").keypress(function(event) {
     if (event.which == 13) {
@@ -13,36 +18,42 @@ $(document).ready(function() {
 
   // update object when list item is clicked
   $(".list").on("click", "li", function() {
-    updateTask($(this));
+    inProgress($(this));
   });
 
   $(".list").on("click", ".complete", function(e) {
     e.stopPropagation();
-    moveTask($(this).parent());
+    isCompleted($(this).parent());
     $(this)
       .parent()
       .remove();
   });
 
-//   current task remove
+  //   current task remove
   $(".list").on("click", ".delete", function(e) {
     e.stopPropagation();
     removeTask($(this).parent());
   });
 
+  // -------------------------------------------- Completed Column On Clicks ------------------------------- //
+
   // completed task remove
-//   this list has several remove functions because the displayed object are either
-//   A) Permanent items from the database that persist on refresh
-//   B) Copies of list items that are temporarily stored in memory - do not persist
-//   The first function removes the items that persist, same as above
-//   The second function makes an ajax delete request with based off of an ID value that is
-//   passed to the temporary list item object. This ID comes from the database's returned ID and is
-//   then used to add onto the URL of the ajax end point 
+  //   this list has several remove functions because the displayed object are either
+  //   A) Permanent items from the database that persist on refresh
+  //   B) Copies of list items that are temporarily stored in memory - do not persist
+  //   The first function removes the items that persist, same as above
+  //   The second function makes an ajax delete request with based off of an ID value that is
+  //   passed to the temporary list item object. This ID comes from the database's returned ID and is
+  //   then used to add onto the URL of the ajax end point
   $(".list2").on("click", ".delete", function(e) {
     e.stopPropagation();
     // console.log($(this).parent().attr('id'));
     removeTask($(this).parent());
-    removeTemp($(this).parent().attr('id'));
+    removeTemp(
+      $(this)
+        .parent()
+        .attr("id")
+    );
     $(this)
       .parent()
       .remove();
@@ -58,6 +69,24 @@ function getTasks(tasks) {
   });
 }
 
+// get all in progress for increment function
+function updateInProgress(tasks) {
+  tasks.forEach(function(task) {
+    if(task.inProgress && !task.isCompleted) {
+      let updateUrl = "/api/tasks/" + task._id;
+      let incrementVal = (task.completedIterations) + 1;
+      let updateData = { completedIterations: incrementVal };
+      $.ajax({
+        method: "PUT",
+        url: updateUrl,
+        data: updateData
+      }).then(function(updatedTask) {
+        $('li#' + task._id + "  .completedIterations").text("Completed iterations: " + incrementVal);
+      });
+    }
+  })
+}
+
 // create html from the db items
 function loadTask(task) {
   // load json info into a list item
@@ -71,16 +100,18 @@ function loadTask(task) {
       task.expectedIterations +
       '<p class="nestedP">&nbsp;/&nbsp;</p>' +
       "</li>" +
-      "<li>Completed iterations: " +
+      "<li class='completedIterations' >Completed iterations: " +
       task.completedIterations +
       "</li></ul>" +
       "</li>"
   );
-    $('.expectedInput').attr('placeholder', task.expectedIterations);
   // jquery memory variables
   newTask.data("id", task._id);
   newTask.data("inProgress", task.inProgress);
   newTask.data("isCompleted", task.isCompleted);
+  newTask.data("completedIterations", task.completedIterations);
+
+  newTask.attr('id', task._id);
 
   // if task is completed
   // permanently add to list 2
@@ -99,25 +130,24 @@ function createTask() {
   let taskName = $("#taskName").val();
   let taskGuess = $("#taskGuess").val();
 
-  if($("#taskGuess").val() == "") {
+  if ($("#taskGuess").val() == "") {
     taskGuess = 1;
   }
 
   let data = {
     name: taskName,
     expectedIterations: taskGuess
-  }
+  };
 
-  $.post("/api/tasks", data)
-  .then(function(newTask) {
-      $("#taskName").val("");
-      $("#taskGuess").val("");
-      loadTask(newTask);
+  $.post("/api/tasks", data).then(function(newTask) {
+    $("#taskName").val("");
+    $("#taskGuess").val("");
+    loadTask(newTask);
   });
 }
 
 // update an existing db object
-function updateTask(task) {
+function inProgress(task) {
   let updateUrl = "/api/tasks/" + task.data("id");
   let switchVar = !task.data("inProgress");
   let updateData = { inProgress: switchVar };
@@ -131,9 +161,15 @@ function updateTask(task) {
   });
 }
 
+function incrementIterations() {
+  // get all in progress
+  $.getJSON("/api/tasks")
+  .then(updateInProgress);
+}
+
 // change bool for data persistence
 // call listFilter method
-function moveTask(task) {
+function isCompleted(task) {
   let updateUrl = "/api/tasks/" + task.data("id");
   let switchVar = !task.data("isCompleted");
   let updateData = { isCompleted: switchVar };
@@ -154,7 +190,7 @@ function moveTask(task) {
           updatedTask.expectedIterations +
           '<p class="nestedP">&nbsp;/&nbsp;</p>' +
           "</li>" +
-          "<li>Completed iterations: " +
+          "<li class='completedIterations' >Completed iterations: " +
           updatedTask.completedIterations +
           "</li></ul>" +
           "</li>"
@@ -189,4 +225,8 @@ function removeTemp(tempId) {
     task.remove();
     console.log(data);
   });
+}
+
+function test() {
+  alert("yoot");
 }

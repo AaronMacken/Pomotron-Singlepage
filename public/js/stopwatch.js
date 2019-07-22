@@ -1,3 +1,4 @@
+
 // html element vars
 var radios = document.getElementsByName("radio"),
   radioContainers = document.getElementsByClassName("container"),
@@ -15,26 +16,20 @@ var isPaused = false,
   isChecked = false,
   isCounting = false;
 
-
-
 function disableButton(el) {
   el.disabled = true;
-  el.classList.add('disableControl');
+  el.classList.add("disableControl");
 }
 
 function enableButton(el) {
   el.disabled = false;
-  el.classList.remove('disableControl');
+  el.classList.remove("disableControl");
 }
-
-
 
 window.onload = function() {
   checkedSwitch();
   pause.disabled = true;
 };
-
-
 
 // on change function's for radio buttons
 // if a button is selected, set a variable to hold that button's value
@@ -106,7 +101,7 @@ function counting() {
 }
 
 // takes a time to count down from and an html element to modify
-// the value from the radio button will be what is passed in and the 
+// the value from the radio button will be what is passed in and the
 // h1 will be what reflects that time
 function startTimer(duration, display) {
   var timer = duration,
@@ -125,6 +120,8 @@ function startTimer(duration, display) {
     if (--timer < 0) {
       clearInterval(x);
       resetClock();
+
+      incrementIterations();
       // call ajax here to modify iterations completed
     }
   }, 1000);
