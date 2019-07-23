@@ -172,7 +172,8 @@ function incrementIterations() {
 function isCompleted(task) {
   let updateUrl = "/api/tasks/" + task.data("id");
   let switchVar = !task.data("isCompleted");
-  let updateData = { isCompleted: switchVar };
+  let updateData = { isCompleted: switchVar,
+                      inProgress: false };
   let taskId = task.data("id");
   $.ajax({
     method: "PUT",
@@ -227,6 +228,3 @@ function removeTemp(tempId) {
   });
 }
 
-function test() {
-  alert("yoot");
-}

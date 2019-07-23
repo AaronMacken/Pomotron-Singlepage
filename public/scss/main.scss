@@ -17,6 +17,7 @@ $color-off-white: #f5f6f7;
 $color-white: #fff;
 $color-disabled: #bbbbbc;
 $color-red: #e74c3c;
+
 *,
 *::after,
 *::before {
@@ -59,14 +60,14 @@ body {
   );
   box-shadow: 0 18px 20px -12px $color-primary;
   border: 2px solid $color-primary-dark;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
 }
 
 .header__titleBox {
-  position: absolute;
-  top: 45%;
-  left: 25%;
-  /* shifts half of the elements width and height, thus centering the element */
-  transform: translate(-50%, -50%);
+  width: 70%;
+  margin: 0 10%;
 }
 
 .header__titleBox__title {
@@ -77,6 +78,7 @@ body {
   font-style: italic;
   letter-spacing: 0.5rem;
   border-bottom: 2px solid $color-white;
+  width: 52rem;
 }
 
 .header__titleBox__title--bold {
@@ -85,23 +87,30 @@ body {
 }
 
 .header__titleBox__title--sub {
-  margin-top: 1rem;
+  margin-top: -1rem;
   font-weight: 300;
   font-size: 2rem;
+  min-width: 53rem;
 }
 
 .header__howToBox {
-  position: absolute;
-  top: 48%;
-  left: 75%;
-  transform: translate(-50%, -50%);
   font-size: 2rem;
   width: 60rem;
+  margin: 0 auto;
 }
 
 .header__howToBox--list {
   font-weight: 100;
   margin-left: 4rem;
+}
+
+.fa-info-circle {
+  float: right;
+  cursor: pointer;
+  position: absolute;
+  right: 1%;
+  top: 10%;
+  font-size: 2.5rem;
 }
 
 // ------------------------------------------------- TIMER --------------------------------------------------- //
@@ -129,9 +138,10 @@ body {
   border-radius: 2px;
   margin-bottom: 2rem;
   box-shadow: 0 18px 20px -12px $color-grey-dark;
+  min-width: 65rem;
 }
 
-// ------------------------------------------------- CUSTOM RADIO BUTTONS --------------------------------------------------- //
+// ------------------------------------------------- CUSTOM RADIO BUTTONS ---------------------------------------------- //
 
 /* The container */
 .container {
@@ -177,6 +187,7 @@ body {
 .container input:checked ~ .checkmark {
   background-color: $color-primary-dark;
 }
+
 .container input:disabled ~ .checkmark {
   background-color: $color-white;
 }
@@ -218,9 +229,12 @@ body {
 }
 
 // ------------------------------------------------- MAIN COLUMN --------------------------------------------------- //
+
 .main {
   color: #000000;
+  margin-bottom: 2rem;
 }
+
 /* Style the tab */
 .tab {
   overflow: hidden;
@@ -229,6 +243,7 @@ body {
   border-radius: 2px;
   width: 50%;
   margin: auto;
+  min-width: 65rem;
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -266,12 +281,12 @@ body {
   margin: auto;
   overflow: scroll;
   background-color: $color-off-white;
+  min-width: 65rem;
 }
 
 // ------------------------------------------------- TASK INPUT --------------------------------------------------- //
 
 .taskInput {
-  width: 100%;
   height: 6rem;
   background: none;
   border: none;
@@ -284,6 +299,7 @@ body {
   display: inline-block;
   float: left;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 ::placeholder {
@@ -294,21 +310,38 @@ body {
 .hint {
   text-align: center;
   font-size: 1.9rem;
-  
+
   span {
     font-style: italic;
   }
+}
 
+.completedTitle {
+  width: 100%;
+  height: 6rem;
+  border-bottom: 1px solid #34495e;
+  font: 300 1.9rem $roboto, sans-serif;
+  padding: 2rem;
+  color: #000;
+  display: inline-block;
+  margin-bottom: 1rem;
+
+  p {
+    text-align: center;
+    opacity: 0.5;
+  }
 }
 
 // ------------------------------------------------- AJAX LI'S --------------------------------------------------- //
 
-.list, .list2 {
+.list,
+.list2 {
   list-style: none;
   font-size: 2.5rem;
   color: #000;
   margin-top: 3rem;
 }
+
 .task {
   margin-bottom: 2rem;
   opacity: 0.5;
@@ -316,6 +349,10 @@ body {
   &:hover {
     opacity: 0.7;
     cursor: pointer;
+  }
+
+  button {
+    margin-top: 1rem;
   }
 }
 
@@ -338,10 +375,7 @@ body {
   }
 }
 
-
 // ------------------------------------------------ LI Components --------------------------------------------------- //
-
-
 
 .btn {
   transition: all 0.3s;
@@ -361,10 +395,10 @@ body {
 .complete {
   color: $color-primary;
 }
+
 .delete {
   color: $color-red;
 }
-
 
 // ------------------------------------------------- CUSTOM STATE STYLES --------------------------------------------------- //
 
@@ -389,4 +423,74 @@ body {
 
 .what {
   color: green;
+}
+
+// ------------------------------------------------------------------- MEDIA QUERY --------------------------------------- //
+
+@media only screen and (max-width: 1300px) {
+  .header {
+    display: block;
+  }
+
+  .header__titleBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    width: initial;
+    margin: initial;
+  }
+
+  .header__titleBox__title {
+    display: inline-block;
+  }
+
+  .header__titleBox__title--sub {
+    display: inline-block;
+    margin: 0;
+  }
+
+  .header__howToBox--list {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 725px) {
+  .header,
+  .timer__container,
+  .tab,
+  .tabcontent {
+    width: 90vw;
+    min-width: 30rem;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  html {
+    font-size: 50%;
+  }
+  .header__titleBox__title, .header__titleBox__title--sub {
+    width: initial;
+    min-width: initial;
+    min-width: 30rem;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  html {
+    font-size: 45%;
+  }
+
+  .header {
+    margin: 2rem auto;
+  }
+
+  body {
+    min-width: 300px;
+    padding: 0;
+  }
+  .taskInput {
+    width: 100%;
+  }
 }

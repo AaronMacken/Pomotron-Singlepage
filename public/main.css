@@ -32,14 +32,14 @@ body {
   position: relative;
   background-image: linear-gradient(to right bottom, #00796b 80%, #004d40);
   box-shadow: 0 18px 20px -12px #00796b;
-  border: 2px solid #004d40; }
+  border: 2px solid #004d40;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center; }
 
 .header__titleBox {
-  position: absolute;
-  top: 45%;
-  left: 25%;
-  /* shifts half of the elements width and height, thus centering the element */
-  transform: translate(-50%, -50%); }
+  width: 70%;
+  margin: 0 10%; }
 
 .header__titleBox__title {
   text-transform: uppercase;
@@ -48,28 +48,35 @@ body {
   font-weight: 100;
   font-style: italic;
   letter-spacing: 0.5rem;
-  border-bottom: 2px solid #fff; }
+  border-bottom: 2px solid #fff;
+  width: 52rem; }
 
 .header__titleBox__title--bold {
   font-weight: 500;
   font-style: italic; }
 
 .header__titleBox__title--sub {
-  margin-top: 1rem;
+  margin-top: -1rem;
   font-weight: 300;
-  font-size: 2rem; }
+  font-size: 2rem;
+  min-width: 53rem; }
 
 .header__howToBox {
-  position: absolute;
-  top: 48%;
-  left: 75%;
-  transform: translate(-50%, -50%);
   font-size: 2rem;
-  width: 60rem; }
+  width: 60rem;
+  margin: 0 auto; }
 
 .header__howToBox--list {
   font-weight: 100;
   margin-left: 4rem; }
+
+.fa-info-circle {
+  float: right;
+  cursor: pointer;
+  position: absolute;
+  right: 1%;
+  top: 10%;
+  font-size: 2.5rem; }
 
 .timer {
   margin-top: 3rem;
@@ -90,7 +97,8 @@ body {
   border: 1px solid #dddfe2;
   border-radius: 2px;
   margin-bottom: 2rem;
-  box-shadow: 0 18px 20px -12px #dddfe2; }
+  box-shadow: 0 18px 20px -12px #dddfe2;
+  min-width: 65rem; }
 
 /* The container */
 .container {
@@ -164,7 +172,8 @@ body {
   color: #f39c12; }
 
 .main {
-  color: #000000; }
+  color: #000000;
+  margin-bottom: 2rem; }
 
 /* Style the tab */
 .tab {
@@ -173,7 +182,8 @@ body {
   background-color: #f5f6f7;
   border-radius: 2px;
   width: 50%;
-  margin: auto; }
+  margin: auto;
+  min-width: 65rem; }
 
 /* Style the buttons that are used to open the tab content */
 .tab button {
@@ -206,10 +216,10 @@ body {
   height: 50rem;
   margin: auto;
   overflow: scroll;
-  background-color: #f5f6f7; }
+  background-color: #f5f6f7;
+  min-width: 65rem; }
 
 .taskInput {
-  width: 100%;
   height: 6rem;
   background: none;
   border: none;
@@ -221,7 +231,8 @@ body {
   width: 50%;
   display: inline-block;
   float: left;
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+  text-align: center; }
 
 ::placeholder {
   color: #000;
@@ -233,7 +244,21 @@ body {
   .hint span {
     font-style: italic; }
 
-.list, .list2 {
+.completedTitle {
+  width: 100%;
+  height: 6rem;
+  border-bottom: 1px solid #34495e;
+  font: 300 1.9rem "Roboto", serif, sans-serif;
+  padding: 2rem;
+  color: #000;
+  display: inline-block;
+  margin-bottom: 1rem; }
+  .completedTitle p {
+    text-align: center;
+    opacity: 0.5; }
+
+.list,
+.list2 {
   list-style: none;
   font-size: 2.5rem;
   color: #000;
@@ -245,6 +270,8 @@ body {
   .task:hover {
     opacity: 0.7;
     cursor: pointer; }
+  .task button {
+    margin-top: 1rem; }
 
 .list2 .complete {
   display: none; }
@@ -293,3 +320,49 @@ body {
 
 .what {
   color: green; }
+
+@media only screen and (max-width: 1300px) {
+  .header {
+    display: block; }
+  .header__titleBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    width: initial;
+    margin: initial; }
+  .header__titleBox__title {
+    display: inline-block; }
+  .header__titleBox__title--sub {
+    display: inline-block;
+    margin: 0; }
+  .header__howToBox--list {
+    display: none; } }
+
+@media only screen and (max-width: 725px) {
+  .header,
+  .timer__container,
+  .tab,
+  .tabcontent {
+    width: 90vw;
+    min-width: 30rem; } }
+
+@media only screen and (max-width: 650px) {
+  html {
+    font-size: 50%; }
+  .header__titleBox__title, .header__titleBox__title--sub {
+    width: initial;
+    min-width: initial;
+    min-width: 30rem; } }
+
+@media only screen and (max-width: 500px) {
+  html {
+    font-size: 45%; }
+  .header {
+    margin: 2rem auto; }
+  body {
+    min-width: 300px;
+    padding: 0; }
+  .taskInput {
+    width: 100%; } }
