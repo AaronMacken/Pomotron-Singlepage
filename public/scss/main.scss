@@ -27,7 +27,8 @@ $color-red: #e74c3c;
   /* give everything inherit for box sizing, and set the body to border-box */
   /* this makes it easier to change box-sizing properties for other things
   if the situation ever arises */
-  box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
 }
 
 html {
@@ -45,7 +46,8 @@ body {
   line-height: 1.7;
   padding: 3rem;
   color: $color-white;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   background-color: $color-grey;
 }
 
@@ -54,16 +56,25 @@ body {
 .header {
   height: 15rem;
   position: relative;
+  background-image: -webkit-gradient(
+    linear,
+    left top, right bottom,
+    color-stop(80%, rgba($color-primary, 1)),
+    to(rgba($color-primary-dark, 1))
+  );
   background-image: linear-gradient(
     to right bottom,
     rgba($color-primary, 1) 80%,
     rgba($color-primary-dark, 1)
   );
-  box-shadow: 0 18px 20px -12px $color-primary;
+  -webkit-box-shadow: 0 18px 20px -12px $color-primary;
+          box-shadow: 0 18px 20px -12px $color-primary;
   border: 2px solid $color-primary-dark;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .header__titleBox {
@@ -138,7 +149,8 @@ body {
   border: 1px solid #dddfe2;
   border-radius: 2px;
   margin-bottom: 2rem;
-  box-shadow: 0 18px 20px -12px $color-grey-dark;
+  -webkit-box-shadow: 0 18px 20px -12px $color-grey-dark;
+          box-shadow: 0 18px 20px -12px $color-grey-dark;
   min-width: 65rem;
 }
 
@@ -255,6 +267,7 @@ body {
   outline: none;
   cursor: pointer;
   padding: 14px 16px;
+  -webkit-transition: 0.3s;
   transition: 0.3s;
   font-size: 1.5rem;
 }
@@ -301,6 +314,21 @@ body {
   float: left;
   margin-bottom: 1rem;
   text-align: center;
+}
+
+::-webkit-input-placeholder {
+  color: #000;
+  opacity: 0.5;
+}
+
+:-ms-input-placeholder {
+  color: #000;
+  opacity: 0.5;
+}
+
+::-ms-input-placeholder {
+  color: #000;
+  opacity: 0.5;
 }
 
 ::placeholder {
@@ -379,6 +407,7 @@ body {
 // ------------------------------------------------ LI Components --------------------------------------------------- //
 
 .btn {
+  -webkit-transition: all 0.3s;
   transition: all 0.3s;
   margin-right: 1rem;
   border: none;
@@ -438,7 +467,8 @@ body {
     top: 50%;
     left: 50%;
     margin-right: -50%;
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     width: initial;
     margin: initial;
   }
