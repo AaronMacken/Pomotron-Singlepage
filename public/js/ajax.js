@@ -21,7 +21,9 @@ $(document).ready(function() {
   $(".currentList").on("click", ".complete", function(e) {
     e.stopPropagation();
     isCompleted($(this).parent());
-    $(this).parent().remove();
+    $(this)
+      .parent()
+      .remove();
   });
 
   // Remove element from DB & UL when clicked by caling removeTask fn
@@ -34,25 +36,27 @@ $(document).ready(function() {
   $(".completedList").on("click", ".delete", function(e) {
     e.stopPropagation();
     removeTask($(this).parent());
-    removeTemp($(this).parent().attr("id"));
-    $(this).parent().remove();
+    removeTemp(
+      $(this)
+        .parent()
+        .attr("id")
+    );
+    $(this)
+      .parent()
+      .remove();
   });
 });
 
-// -------------------------------------------------------- AJAX FUNCTIONS ---------------------------------------------------------- // 
+// -------------------------------------------------------- AJAX FUNCTIONS ---------------------------------------------------------- //
 
-
-
-// ---------------------------------------- Get Items From DB ---------------------------------------------------------- // 
+// ---------------------------------------- Get Items From DB ---------------------------------------------------------- //
 function getTasks(tasks) {
   tasks.forEach(function(task) {
     loadTask(task);
   });
 }
 
-
-
-// --------------------------------- Create html elements from returned JSON & load onto page--------------------------- // 
+// --------------------------------- Create html elements from returned JSON & load onto page--------------------------- //
 function loadTask(task) {
   // load json info into a list item
   let newTask = $(
@@ -60,11 +64,11 @@ function loadTask(task) {
       task.name +
       '<button class="btn btn--ajax delete"><i class="fas fa-times"></i></button>' +
       '<button class="btn btn--ajax complete"><i class="fas fa-check"></i></button>' +
-      '<ul class="nestedList"><li>Expected iterations: ' +
+      '<ul class="nestedList"><li>Expected pomodorros: ' +
       task.expectedIterations +
       '<p class="nestedP">&nbsp;/&nbsp;</p>' +
       "</li>" +
-      "<li class='completedIterations' >Completed iterations: " +
+      "<li class='completedIterations' >Completed pomodorros: " +
       task.completedIterations +
       "</li></ul>" +
       "</li>"
@@ -91,9 +95,7 @@ function loadTask(task) {
   $(".currentList").append(newTask);
 }
 
-
-
-// -------------------------- Send post request w/ form value & call load task function ----------------------------- // 
+// -------------------------- Send post request w/ form value & call load task function ----------------------------- //
 
 function createTask() {
   let taskName = $("#taskName").val();
@@ -115,9 +117,7 @@ function createTask() {
   });
 }
 
-
-
-// ---------------------------------------- change boolean value of inProgress---------------------------------------- // 
+// ---------------------------------------- change boolean value of inProgress---------------------------------------- //
 
 function inProgress(task) {
   let updateUrl = "/api/tasks/" + task.data("id");
@@ -133,14 +133,13 @@ function inProgress(task) {
   });
 }
 
-
-// ---------------------------------------- change boolean value of isCompleted ---------------------------------------- // 
+// ---------------------------------------- change boolean value of isCompleted ---------------------------------------- //
 // not the most efficient solution... creates a temporary element on completedList & removes the element on currentList
-// when the on click function is fired, causing it to appear that the front end element has moved. 
+// when the on click function is fired, causing it to appear that the front end element has moved.
 // What actually happens is the boolean is changed and will only appear on completedList when the page is refreshed via the
 // load task method. To combat this we create the temporary html elements to give the illusion of ajax.
 // Still, this solution  does not disrupt the flow of the page and all data will still be properly displayed,
-// but is it REALLY AJAX? 
+// but is it REALLY AJAX?
 
 function isCompleted(task) {
   let updateUrl = "/api/tasks/" + task.data("id");
@@ -179,10 +178,8 @@ function isCompleted(task) {
   });
 }
 
-
-
 // --------------------- starting function to increment iteration data, gets all objects first ----------------------- //
-// this function is called in the stopwatch.js file once the clock hits 0 and clear interval is ran, 
+// this function is called in the stopwatch.js file once the clock hits 0 and clear interval is ran,
 // all items marked as inProgress will have their completedIterations incremented by 1
 
 function incrementIterations() {
@@ -190,9 +187,7 @@ function incrementIterations() {
   $.getJSON("/api/tasks").then(updateInProgress);
 }
 
-
-
-// ----------------- if task inProgress = true & task is not completed, increment it's iterations by 1 --------------- // 
+// ----------------- if task inProgress = true & task is not completed, increment it's iterations by 1 --------------- //
 
 function updateInProgress(tasks) {
   tasks.forEach(function(task) {
@@ -213,9 +208,7 @@ function updateInProgress(tasks) {
   });
 }
 
-
-
-// ----------------- Remove task from DB, on click function will also remove the html components --------------- // 
+// ----------------- Remove task from DB, on click function will also remove the html components --------------- //
 function removeTask(task) {
   let deleteUrl = "/api/tasks/" + task.data("id");
   $.ajax({
@@ -227,7 +220,7 @@ function removeTask(task) {
   });
 }
 
-// ------ Remove a temporary html element. Still sends an AJAX Delete request with the db object's unique ID ------- // 
+// ------ Remove a temporary html element. Still sends an AJAX Delete request with the db object's unique ID ------- //
 function removeTemp(tempId) {
   let deleteUrl = "/api/tasks/" + tempId;
   $.ajax({

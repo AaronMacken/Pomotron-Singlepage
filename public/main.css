@@ -8,6 +8,7 @@
   /* give everything inherit for box sizing, and set the body to border-box */
   /* this makes it easier to change box-sizing properties for other things
   if the situation ever arises */
+  -webkit-box-sizing: inherit;
   box-sizing: inherit; }
 
 html {
@@ -24,17 +25,22 @@ body {
   line-height: 1.7;
   padding: 3rem;
   color: #fff;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   background-color: #e9ebee; }
 
 .header {
   height: 15rem;
   position: relative;
+  background-image: -webkit-gradient(linear, left top, right bottom, color-stop(80%, #00796b), to(#004d40));
   background-image: linear-gradient(to right bottom, #00796b 80%, #004d40);
+  -webkit-box-shadow: 0 18px 20px -12px #00796b;
   box-shadow: 0 18px 20px -12px #00796b;
   border: 2px solid #004d40;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center; }
 
 .header__titleBox {
@@ -97,6 +103,7 @@ body {
   border: 1px solid #dddfe2;
   border-radius: 2px;
   margin-bottom: 2rem;
+  -webkit-box-shadow: 0 18px 20px -12px #dddfe2;
   box-shadow: 0 18px 20px -12px #dddfe2;
   min-width: 65rem; }
 
@@ -193,6 +200,7 @@ body {
   outline: none;
   cursor: pointer;
   padding: 14px 16px;
+  -webkit-transition: 0.3s;
   transition: 0.3s;
   font-size: 1.5rem; }
 
@@ -233,6 +241,18 @@ body {
   float: left;
   margin-bottom: 1rem;
   text-align: center; }
+
+::-webkit-input-placeholder {
+  color: #000;
+  opacity: 0.5; }
+
+:-ms-input-placeholder {
+  color: #000;
+  opacity: 0.5; }
+
+::-ms-input-placeholder {
+  color: #000;
+  opacity: 0.5; }
 
 ::placeholder {
   color: #000;
@@ -285,6 +305,7 @@ body {
     display: inline-block; }
 
 .btn {
+  -webkit-transition: all 0.3s;
   transition: all 0.3s;
   margin-right: 1rem;
   border: none;
@@ -321,6 +342,58 @@ body {
 .what {
   color: green; }
 
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */ }
+
+/* Modal Content/Box */
+.modal-content {
+  margin: 15% auto;
+  /* 15% from the top and centered */
+  padding: 2rem;
+  border: 1px solid #dddfe2;
+  background-color: #f5f6f7;
+  color: #000;
+  font-size: 2rem;
+  width: 50%;
+  /* Could be more or less, depending on screen size */ }
+  .modal-content h2 {
+    text-align: center; }
+    .modal-content h2 span {
+      font-style: italic; }
+  .modal-content ul {
+    margin: 2rem; }
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 2.8rem;
+  font-weight: bold; }
+
+.close:hover,
+.close:focus {
+  color: #e74c3c;
+  text-decoration: none;
+  cursor: pointer; }
+
 @media only screen and (max-width: 1300px) {
   .header {
     display: block; }
@@ -329,6 +402,7 @@ body {
     top: 50%;
     left: 50%;
     margin-right: -50%;
+    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     width: initial;
     margin: initial; }
@@ -338,7 +412,9 @@ body {
     display: inline-block;
     margin: 0; }
   .header__howToBox--list {
-    display: none; } }
+    display: none; }
+  .modal-content {
+    width: 75%; } }
 
 @media only screen and (max-width: 725px) {
   .header,
@@ -346,7 +422,9 @@ body {
   .tab,
   .tabcontent {
     width: 90vw;
-    min-width: 30rem; } }
+    min-width: 30rem; }
+  .modal-content {
+    width: 90%; } }
 
 @media only screen and (max-width: 650px) {
   html {
