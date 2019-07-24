@@ -574,6 +574,9 @@ body {
     min-width: initial;
     min-width: 30rem;
   }
+  .container input:checked ~ .checkmark:after {
+    display: none;
+}
 }
 
 @media only screen and (max-width: 500px) {
