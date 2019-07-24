@@ -478,19 +478,23 @@ body {
   border: 1px solid #dddfe2;
   background-color: $color-off-white;
   color: #000;
-  font-size: 2rem;
+  font-size: 1.5rem;
   width: 50%; /* Could be more or less, depending on screen size */
 
   h2 {
     text-align: center;
-
+    color: $color-primary;
     span {
       font-style: italic;
+      font-weight: 700;
     }
   }
-
+  .bold {
+    font-weight: bold;
+  }
   ul {
     margin: 2rem;
+    margin-bottom: 1rem;
   }
 
 }

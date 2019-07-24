@@ -371,15 +371,20 @@ body {
   border: 1px solid #dddfe2;
   background-color: #f5f6f7;
   color: #000;
-  font-size: 2rem;
+  font-size: 1.5rem;
   width: 50%;
   /* Could be more or less, depending on screen size */ }
   .modal-content h2 {
-    text-align: center; }
+    text-align: center;
+    color: #00796b; }
     .modal-content h2 span {
-      font-style: italic; }
+      font-style: italic;
+      font-weight: 700; }
+  .modal-content .bold {
+    font-weight: bold; }
   .modal-content ul {
-    margin: 2rem; }
+    margin: 2rem;
+    margin-bottom: 1rem; }
 
 /* The Close Button */
 .close {
