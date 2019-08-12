@@ -11,7 +11,7 @@ exports.getTasks = (req, res) => {
     });
 };
 
-// crete route
+// create route
 exports.createTask = (req, res) => {
   db.Task.create(req.body)
     .then(newTask => {
